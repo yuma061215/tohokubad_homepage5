@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- →スマホでもみやすくするためのレスポンシブ対応 -->
+
+  <title>東北大学バドミントン部｜部員紹介</title>
+  <!-- ページのタイトル（タブに表示されるやつ） -->
+
+  <meta name="description" content="東北大学バドミントン部の部員紹介ページ（学年・種目・学部・出身地で絞り込み）。" />
+  <!-- 検索結果などに表示される説明文（SEO対策） -->
+
+  <link rel="stylesheet" href="style.css" />
+  <!-- CSS読み込むためのコード -->
+
+</head>
+<body>
+  <header>
+    <div class="max">
+      <!-- 
+      div：ブロック化するのに使う（ブロックボックスを生成）
+      span：テキストの一部にスタイルを適応する時に使う（インラインボックスを生成）
+      ブロックボックス：可能なかぎり横幅いっぱいの領域を取ろうとする
+      インラインボックス：要素の中身と同じ幅の領域をとる
+      -->
+
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <!-- aria-hidden="true"は音声読み上げソフトの対象にしないようにするためのコード -->
+
+        <h1>東北大学バドミントン部</h1>
+      </div>
+      <div class="controls">
+        <div>
+          <label for="q">検索（氏名・学部・出身地など）</label>
+          <!--
+          label:項目名と入力欄を関連づけるタグ
+          forとid：検索の詳細と検索ボックスを結びつけるコード（名前同じにして結びつける）
+          labelでくくることで検索の説明のとこをクリックしても入力に移る
+          -->
+
+          <input id="q" type="search" placeholder="例：佐藤 / 工学部 / 宮城" aria-label="検索" />
+          <!-- 
+          type="search"：検索用UI
+          placeholder:入力例。検索ボックスの中に薄字で表示される 
+          -->
+
+        </div>
+        <div>
+          <label for="grade">学年</label>
+          <select id="grade">
+            <option value="">すべて</option>
+            <option value="B1">学部1年</option>
+            <option value="B2">学部2年</option>
+            <option value="B3">学部3年</option>
+            <option value="B4">学部4年</option>
+            <option value="M1">修士1年</option>
+            <option value="M2">修士2年</option>
+          </select>
+        </div>
+        <div>
+          <label>種目</label>
+          <div class="chips" id="chips-kind" role="listbox" aria-label="種目">
+            <!-- 
+            P128
+            class:共通の性質を持ったものの集まり
+            id:一つだけの名前
+            →セレクタの書き方違うことに注意
+            id="chips-kind":JavaScript用の識別子(JavaScriptがこの部分を見つけやすくするためのもの) 
+            role="listbox"：リストボックスだとスクリーンリーダーに伝える。
+            aria-label="種目":名前付けしてるだけ
+            -->
+
+            <button class="chip is-active" data-value="">すべて</button>
+            <!-- is-active:今選ばれてる見た目にするためのクラス -->
+
+            <button class="chip" data-value="S">シングルス</button>
+            <button class="chip" data-value="D">ダブルス</button>
+            <button class="chip" data-value="Mxd">混合</button>
+          </div>
+        </div>
+        <div>
+          <label>所属（学部）</label>
+          <div class="chips" id="chips-fac">
+            <button class="chip is-active" data-value="">すべて</button>
+            <button class="chip" data-value="工学部">工学部</button>
+            <button class="chip" data-value="理学部">理学部</button>
+            <button class="chip" data-value="経済学部">経済学部</button>
+            <button class="chip" data-value="その他">その他</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max">
+    <section class="grid" id="grid" aria-live="polite" aria-busy="false">
+      <!-- ▼ サンプルカード ▼ -->
+      <article class="card" data-name="佐藤 太郎" data-yomi="さとう たろう" data-grade="B2" data-kind="S" data-fac="工学部" data-home="宮城">
+        <div class="media"><img src="https://picsum.photos/seed/bd1/800/600" alt="佐藤太郎の写真"><span class="tag">B2 / S</span></div>
+        <!-- 画像は必ずaltをつける -->
+
+        <div class="p16">
+          <div class="name"><b>佐藤 太郎</b><span class="yomi">さとう たろう</span></div>
+          <div class="meta">
+            <span class="pill">工学部</span>
+            <span class="pill">宮城</span>
+          </div>
+          <div class="footer">
+            <small>#攻撃的 #速攻</small>
+            <button class="btn" data-open>プロフィール</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-name="中村 花" data-yomi="なかむら はな" data-grade="B1" data-kind="D" data-fac="理学部" data-home="青森">
+        <div class="media"><img src="https://picsum.photos/seed/bd2/800/600" alt="中村花の写真"><span class="tag">B1 / D</span></div>
+        <div class="p16">
+          <div class="name"><b>中村 花</b><span class="yomi">なかむら はな</span></div>
+          <div class="meta">
+            <span class="pill">理学部</span>
+            <span class="pill">青森</span>
+          </div>
+          <div class="footer">
+            <small>#粘り強い #安定感</small>
+            <button class="btn" data-open>プロフィール</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-name="伊藤 海斗" data-yomi="いとう かいと" data-grade="M1" data-kind="Mxd" data-fac="経済学部" data-home="東京">
+        <div class="media"><img src="https://picsum.photos/seed/bd3/800/600" alt="伊藤海斗の写真"><span class="tag">M1 / 混合</span></div>
+        <div class="p16">
+          <div class="name"><b>伊藤 海斗</b><span class="yomi">いとう かいと</span></div>
+          <div class="meta">
+            <span class="pill">経済学部</span>
+            <span class="pill">東京</span>
+          </div>
+          <div class="footer">
+            <small>#戦術家 #連携</small>
+            <button class="btn" data-open>プロフィール</button>
+          </div>
+        </div>
+      </article>
+      <!-- ▲ サンプルカード ▲ -->
+    </section>
+
+    <p class="empty" id="empty" hidden>条件に一致する部員が見つかりませんでした。</p>
+  </main>
+
+  <!-- プロフィールモーダル -->
+  <dialog id="dlg" aria-labelledby="dlg-title">
+    <div class="dlg-head">
+      <strong id="dlg-title">プロフィール</strong>
+      <button class="btn" id="dlg-close">閉じる</button>
+    </div>
+    <div class="dlg-body">
+      <div class="dlg-media"><img id="dlg-img" alt="プロフィール画像" /></div>
+      <div class="dlg-content">
+        <div class="kv"><div class="k">氏名</div><div class="v" id="dlg-name"></div></div>
+        <div class="kv"><div class="k">よみ</div><div class="v" id="dlg-yomi"></div></div>
+        <div class="kv"><div class="k">学年 / 種目</div><div class="v" id="dlg-gy"></div></div>
+        <div class="kv"><div class="k">学部</div><div class="v" id="dlg-fac"></div></div>
+        <div class="kv"><div class="k">出身地</div><div class="v" id="dlg-home"></div></div>
+        <div class="kv"><div class="k">ひとこと</div><div class="v" id="dlg-note">——</div></div>
+      </div>
+    </div>
+  </dialog>
+
+  <script>
+    const $ = (s, r=document) => r.querySelector(s);
+    const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
+  //   $('#id') で document.querySelector('#id') と同じ。
+	// 	$$('.card') で NodeList を配列にして扱いやすくしている。
+
+    const grid = $('#grid');
+    const empty = $('#empty');
+    const state = { q:'', grade:'', kind:'', fac:'' };
+
+    const setActiveChip = (wrapId, value) => {
+      const box = document.getElementById(wrapId);
+      $$('.chip', box).forEach(ch => ch.classList.toggle('is-active', ch.dataset.value === value));
+    };
+
+    $('#q').addEventListener('input', e => { state.q = e.target.value.trim(); apply(); });
+    $('#grade').addEventListener('change', e => { state.grade = e.target.value; apply(); });
+
+    document.getElementById('chips-kind').addEventListener('click', e => {
+      if(e.target.matches('.chip')){
+        state.kind = e.target.dataset.value; setActiveChip('chips-kind', state.kind); apply();
+      }
+    });
+
+//     id="chips-kind"：この部分に名前をつける（JavaScriptが探せるようにする）
+//   document.getElementById('chips-kind')：その名前で「種目ボタンのグループ」を見つける
+//   .addEventListener('click', …)：クリックされたときに動作する命令を登録する
+// 　if(e.target.matches('.chip'))：クリックされたのが「ボタン(.chip)」だったら動かす
+
+
+    document.getElementById('chips-fac').addEventListener('click', e => {
+      if(e.target.matches('.chip')){
+        state.fac = e.target.dataset.value; setActiveChip('chips-fac', state.fac); apply();
+      }
+    });
+
+    function apply(){
+      grid.setAttribute('aria-busy','true');
+      let matchCount = 0;
+      $$('.card', grid).forEach(card => {
+        const text = `${card.dataset.name} ${card.dataset.yomi} ${card.dataset.fac} ${card.dataset.home}`;
+        const okQ = !state.q || text.includes(state.q);
+        const okG = !state.grade || card.dataset.grade === state.grade;
+        const okK = !state.kind  || card.dataset.kind === state.kind;
+        const okF = !state.fac   || card.dataset.fac === state.fac;
+        const show = okQ && okG && okK && okF;
+        card.hidden = !show; if(show) matchCount++;
+      });
+      empty.hidden = matchCount !== 0;
+      grid.removeAttribute('aria-busy');
+    }
+
+    const dlg = document.getElementById('dlg');
+    const closeBtn = document.getElementById('dlg-close');
+
+    grid.addEventListener('click', e => {
+      const btn = e.target.closest('[data-open]');
+      if(!btn) return;
+      const card = e.target.closest('.card');
+      $('#dlg-title').textContent = `${card.dataset.name} — プロフィール`;
+      $('#dlg-name').textContent  = card.dataset.name;
+      $('#dlg-yomi').textContent  = card.dataset.yomi;
+      $('#dlg-gy').textContent    = `${card.dataset.grade} / ${card.dataset.kind}`;
+      $('#dlg-fac').textContent   = card.dataset.fac;
+      $('#dlg-home').textContent  = card.dataset.home;
+      $('#dlg-img').src = card.querySelector('img').src;
+      dlg.showModal();
+    });
+
+    closeBtn.addEventListener('click', () => dlg.close());
+    apply();
+  </script>
+</body>
+</html>

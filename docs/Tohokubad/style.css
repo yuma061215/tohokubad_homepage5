@@ -1,0 +1,163 @@
+@charset "utf-8";
+
+/* === 東北大学「深い紫」系トーン === */
+:root{
+  --bg:#0f0b1a;          /* 背景（ごく深い紫） */
+  --card:#1a1530;        /* カード背景（暗紫） */
+  --accent:#a78bfa;      /* アクセント（淡い紫） */
+  --accent-2:#c4b5fd;    /* アクセント（明るめ紫） */
+  --text:#f3e8ff;        /* 文字（白紫寄り） */
+  --muted:#bda9e3;       /* 補助文字 */
+  --chip:#201a3c;        /* チップ背景 */
+  --chip-border:#332a66; /* チップ枠 */
+  --ring:0 0 0 3px rgba(167,139,250,.25);
+  --radius:18px;
+}
+/* 変数に名前をつけて使いやすくしてる */
+
+/* Reset-ish */
+*{box-sizing:border-box}
+html,body{
+  margin:0; padding:0;
+  background:var(--bg); color:var(--text);
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,
+    "Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic UI",
+    "Yu Gothic",Meiryo,sans-serif;
+}
+a{color:inherit; text-decoration:none}
+
+/* Header */
+header{
+  position:sticky; top:0; z-index:50;
+  backdrop-filter:saturate(1.2) blur(10px);
+  /* 後ろにあるものが少し鮮やか＆ぼかし効果で、ヘッダーが半透明のガラスみたいに見える。 */
+
+  background:linear-gradient(180deg,rgba(15,11,26,.9),rgba(15,11,26,.6) 60%,transparent);
+/* 上から下へ、濃い→少し薄い→透明 というグラデーション。 */
+
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.max{max-width:1200px; margin-inline:auto; padding:16px 20px}
+/* 中身の幅を最大1200pxにして、左右まんなか寄せ（auto）。内側に上下16px、左右20pxの余白。 */
+
+/* ── タイトルを中央寄せに変更 ───────────────── */
+.brand {
+  display: flex;
+  justify-content: center; /* 横方向の中央寄せ */
+  align-items: center;     /* 縦方向の中央寄せ */
+}
+
+.brand .logo {
+  display: none; /* ロゴ非表示 */
+}
+
+.brand h1 {
+  text-align: center;
+  font-size: clamp(20px, 3vw, 28px); /* 少し大きめに調整 */
+  margin: 0;
+}
+/* .brand{display:flex; align-items:center; gap:12px}
+.brand .logo{
+  width:40px; height:40px; border-radius:10px;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  box-shadow:0 6px 20px rgba(167,139,250,.3);
+}
+.brand h1{font-size:clamp(18px,2.4vw,24px); margin:0; letter-spacing:.02em} */
+
+/* Controls */
+.controls{display:grid; gap:12px; grid-template-columns:1fr; padding:12px 20px 20px}
+@media (min-width:740px){
+  .controls{grid-template-columns:1.2fr .8fr .8fr .8fr; align-items:end}
+}
+label{font-size:12px; color:var(--muted); display:block; margin-bottom:6px}
+select, input[type="search"]{
+  width:100%; background:var(--card);
+  border:1px solid rgba(255,255,255,.1);
+  color:var(--text); border-radius:12px; padding:12px 14px;
+  outline:none; transition:.15s ease;
+}
+select:focus, input[type="search"]:focus{
+  box-shadow:var(--ring); border-color:var(--accent);
+}
+
+/* Chips */
+.chips{display:flex; flex-wrap:wrap; gap:8px}
+.chip{
+  font-size:12px; padding:6px 10px; cursor:pointer; user-select:none;
+  background:var(--chip); border:1px solid var(--chip-border); border-radius:999px;
+}
+.chip.is-active{
+  background:linear-gradient(135deg,rgba(167,139,250,.2),rgba(196,181,253,.15));
+  border-color:var(--accent);
+}
+
+/* Grid & Cards */
+main{padding:10px 20px 60px}
+.grid{display:grid; gap:16px}
+@media (min-width:680px){ .grid{grid-template-columns:repeat(2, minmax(0,1fr))} }
+@media (min-width:980px){ .grid{grid-template-columns:repeat(3, minmax(0,1fr))} }
+
+.card{
+  background:
+    radial-gradient(60% 120% at 10% 0%,rgba(167,139,250,.12),transparent 60%),
+    var(--card);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:var(--radius);
+  overflow:hidden; position:relative;
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+.card:hover{transform:translateY(-2px); box-shadow:0 18px 40px rgba(64,41,99,.45)}
+
+.media{
+  aspect-ratio:16/11;
+  background:#150f27; display:grid; place-items:center; position:relative;
+}
+.media img{width:100%; height:100%; object-fit:cover}
+.tag{
+  position:absolute; left:10px; top:10px;
+  font-size:11px; padding:6px 10px; border-radius:999px;
+  background:rgba(0,0,0,.45); border:1px solid rgba(255,255,255,.15);
+}
+
+.p16{padding:16px}
+.name{display:flex; align-items:flex-end; justify-content:space-between; gap:14px}
+.name b{font-size:18px; letter-spacing:.03em}
+.yomi{font-size:12px; color:var(--muted)}
+.meta{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
+.meta .pill{
+  font-size:11px; padding:6px 8px; border-radius:999px;
+  background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08);
+}
+
+.footer{
+  display:flex; justify-content:space-between; align-items:center;
+  margin-top:12px; font-size:13px; color:var(--muted);
+}
+.btn{
+  appearance:none; border:none; cursor:pointer;
+  padding:10px 12px; border-radius:12px; transition:.15s ease;
+  color:var(--text);
+  background:linear-gradient(135deg,rgba(167,139,250,.25),rgba(196,181,253,.25));
+}
+.btn:hover{filter:brightness(1.07)}
+
+/* Dialog */
+dialog{
+  border:none; border-radius:16px; padding:0;
+  width:min(820px,92vw); background:var(--card); color:var(--text);
+}
+dialog::backdrop{background:rgba(0,0,0,.55)}
+.dlg-head{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:14px 18px; border-bottom:1px solid rgba(255,255,255,.08);
+}
+.dlg-body{display:grid; grid-template-columns:1fr; gap:0}
+@media (min-width:860px){ .dlg-body{grid-template-columns:360px 1fr} }
+.dlg-media{aspect-ratio:4/3; background:#1b1433}
+.dlg-media img{width:100%; height:100%; object-fit:cover}
+.dlg-content{padding:18px}
+.kv{display:grid; grid-template-columns:110px 1fr; gap:12px; font-size:14px; padding:6px 0}
+.kv .k{color:var(--muted)}
+
+.empty{padding:36px; text-align:center; color:var(--muted)}
+[hidden]{display:none !important}

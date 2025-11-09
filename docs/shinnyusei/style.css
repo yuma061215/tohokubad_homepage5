@@ -1,0 +1,176 @@
+@charset "utf-8";
+
+/* =========================================
+   🟣 カラーテーマ（統一）
+========================================= */
+:root {
+  --bg: #f4f3fa;           /* 💡背景：白に近いグレイッシュパープル（柔らかく清潔） */
+  --card: #ffffff;         /* 💡カード：純白で清潔感を出す */
+  --accent: #4b3fa6;       /* 💡アクセント：濃いめの青紫（男性的で締まる） */
+  --accent-light: #9183e3; /* 💡アクセント明：薄い紫で柔らかさを残す */
+  --text: #1a1530;         /* 💡本文：濃紺に近い紫黒（可読性＆統一感） */
+  --muted: #555;           /* 💡補助文字：中間グレー（沈みすぎず軽い） */
+}
+
+/* =========================================
+   🟣 全体レイアウト
+========================================= */
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Noto Sans JP", sans-serif;
+  line-height: 1.7;
+}
+
+/* =========================================
+   🟣 ヒーローセクション
+========================================= */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 450px;
+  overflow: hidden;
+  color: var(--text);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  background: url("../../Tohokubad/IMG_9907.JPG") center/cover no-repeat;
+  filter: blur(4px);
+  transform: scale(1.05);
+  z-index: 0;
+}
+
+.hero .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 1;
+}
+
+.hero .brand {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.hero .main-title {
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: calc(22px + 1vw);
+  color: #f3e8ff;
+  text-shadow: 0 3px 12px rgba(0,0,0,0.5);
+  line-height: 1.4;
+}
+
+.hero .main-title span {
+  display: block;
+  font-size: 0.8em;
+  color: var(--accent-light);
+  margin-top: 6px;
+}
+
+/* =========================================
+   🟣 透明ナビゲーションバー
+========================================= */
+.navbar {
+  background: rgba(255, 255, 255, 0.05); /* ← ほぼ透明（5%の白） */
+  backdrop-filter: blur(6px) saturate(120%); /* ← 背景を軽くぼかして可読性UP */
+  position: fixed;  /* ← ページ最上部で固定 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  transition: background 0.3s ease;
+}
+
+/* ホバー時やスクロールで背景が少し濃くなる演出（任意） */
+body.scrolled .navbar {
+  background: rgba(26, 21, 48, 0.6); /* ← 下にスクロールしたら紫っぽく */
+  backdrop-filter: blur(10px);
+}
+
+/* ナビ内レイアウト */
+.navbar ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 28px;
+  list-style: none;
+  margin: 0;
+  padding: 14px 20px;
+}
+
+.navbar a {
+  color: #f3e8ff;
+  text-decoration: none;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  transition: all 0.25s ease;
+}
+
+.navbar a:hover,
+.navbar a.active {
+  color: #a78bfa;
+  border-bottom: 2px solid #a78bfa;
+  padding-bottom: 2px;
+}
+
+/* =========================================
+   🟣 Q&A 部分
+========================================= */
+.container {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 0 20px;
+}
+
+.qa-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.qa {
+  background: var(--card);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  padding: 20px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.qa:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+}
+
+.qa h3 {
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.qa p {
+  margin: 0;
+  color: var(--text);
+  font-size: 15px;
+}
+
+/* =========================================
+   🟣 フッター
+========================================= */
+footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+  padding: 30px 0;
+  border-top: 1px solid rgba(0,0,0,0.1);
+}

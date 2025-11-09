@@ -1,0 +1,1079 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- →スマホでもみやすくするためのレスポンシブ対応 -->
+
+  <title>東北大学バドミントン部｜部員紹介</title>
+  <!-- ページのタイトル（タブに表示されるやつ） -->
+
+  <meta name="description" content="東北大学バドミントン部の部員紹介ページ（学年・種目・学部・出身地で絞り込み）。" />
+  <!-- 検索結果などに表示される説明文（SEO対策） -->
+
+  <link rel="stylesheet" href="style.css" />
+  <!-- CSS読み込むためのコード -->
+
+</head>
+<body>
+<!-- ====== 共通ナビゲーションバー ====== -->
+<nav class="navbar">
+  <ul>
+    <li><a href="../docs/index.html">トップページ</a></li>
+    <li><a href="../jikoshyokai/index.html" class="active">部員紹介</a></li>
+    <li><a href="../shinnyusei/index.html">新入生の方へ</a></li>
+    <li><a href="#">ギャラリー</a></li>
+    <li><a href="#">掲示板</a></li>
+    <li><a href="../OB/index.html ">OBの皆様へ</a></li>
+    <li><a href="#">飛翔</a></li>
+    <!-- <li><a href="#">リンク</a></li> -->
+  </ul>
+</nav>
+
+
+  <header class="hero">
+  <div class="overlay"></div>
+    <div class="max">
+      <!-- 
+      div：ブロック化するのに使う（ブロックボックスを生成）
+      span：テキストの一部にスタイルを適応する時に使う（インラインボックスを生成）
+      ブロックボックス：可能なかぎり横幅いっぱいの領域を取ろうとする
+      インラインボックス：要素の中身と同じ幅の領域をとる
+      -->
+
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <!-- aria-hidden="true"は音声読み上げソフトの対象にしないようにするためのコード -->
+
+          <h1 class="main-title">
+            東北大学バドミントン部<br>
+            <span>Tohoku University Badminton Club</span>
+          </h1>
+      </div>
+      <div class="controls">
+        <div>
+          <label for="q">検索（氏名・学部・出身地）</label>
+          <!--
+          label:項目名と入力欄を関連づけるタグ
+          forとid：検索の詳細と検索ボックスを結びつけるコード（名前同じにして結びつける）
+          labelでくくることで検索の説明のとこをクリックしても入力に移る
+          -->
+
+          <input id="q" type="search" placeholder="例：佐藤 / 工学部 / 宮城" aria-label="検索" />
+          <!-- 
+          type="search"：検索用UI
+          placeholder:入力例。検索ボックスの中に薄字で表示される 
+          -->
+
+        </div>
+        <div>
+          <label for="grade">学年</label>
+          <select id="grade">
+            <option value="">すべて</option>
+            <option value="B1">学部1年</option>
+            <option value="B2">学部2年</option>
+            <option value="B3">学部3年</option>
+            <option value="B4">学部4年</option>
+            <option value="M1">修士1年</option>
+            <option value="M2">修士2年</option>
+          </select>
+        </div>
+        <div>
+            <label>出身地</label>
+            <div class="chips" id="chips-home" role="listbox" aria-label="出身地">
+              <button class="chip is-active" data-value="">すべて</button>
+              <button class="chip" data-value="宮城県">宮城県</button>
+              <button class="chip" data-value="山形県">山形県</button>
+              <button class="chip" data-value="東京都">東京都</button>
+              <button class="chip" data-value="神奈川県">神奈川県</button>
+              <button class="chip" data-value="埼玉県">埼玉県</button>
+              <button class="chip" data-value="栃木県">栃木県</button>
+              <button class="chip" data-value="その他">その他</button>
+            </div>
+          </div>
+            <!-- 
+            P128
+            class:共通の性質を持ったものの集まり
+            id:一つだけの名前
+            →セレクタの書き方違うことに注意
+            id="chips-kind":JavaScript用の識別子(JavaScriptがこの部分を見つけやすくするためのもの) 
+            role="listbox"：リストボックスだとスクリーンリーダーに伝える。
+            aria-label="種目":名前付けしてるだけ
+            -->
+            <!-- is-active:今選ばれてる見た目にするためのクラス -->
+        <!-- 所属（学部）だけを残して選択可能にする -->
+          <div>
+            <label>所属（学部）</label>
+            <div class="chips" id="chips-fac" role="listbox" aria-label="所属学部">
+              <button class="chip is-active" data-value="">すべて</button>
+              <button class="chip" data-value="工学部">工学部</button>
+              <button class="chip" data-value="理学部">理学部</button>
+              <button class="chip" data-value="農学部">農学部</button>
+              <button class="chip" data-value="経済学部">経済学部</button>
+              <button class="chip" data-value="文学部">文学部</button>
+              <button class="chip" data-value="その他">その他</button>
+            </div>
+          </div>  
+      </div>
+    </div>
+  </header>  
+
+  <main class="max">
+    <section class="grid" id="grid" aria-live="polite" aria-busy="false">
+
+      <!-- ▼ 学年別セクションを追加 ▼ -->
+       <section class="year-section" id="year-section">
+  
+  <div class="year-card" data-grade="学部3年生">
+  <div class="year-photo">
+    <img src="../../Tohokubad/TakuyaNomizo.jpg" class="active" alt="3年生1">
+    <img src="../../Tohokubad/RyoyaYamauchi.jpg" alt="3年生2">
+    <img src="../../Tohokubad/TakumiSaito.jpg" alt="3年生3">
+    <img src="../../Tohokubad/NodokaKuriki.jpg" alt="3年生4">
+    <img src="../../Tohokubad/HiroshiSasaki.jpg" alt="3年生5">
+    <img src="../../Tohokubad/MinoriMatsukura.jpg" alt="3年生6">
+    <img src="../../Tohokubad/TaiseiIiba.jpg" alt="3年生7">
+    <img src="../../Tohokubad/KoseiFujisawa.jpg" alt="3年生8">
+    <img src="../../Tohokubad/YusakuYokoyama.jpg" alt="3年生9">
+    <img src="../../Tohokubad/RyutoSakurai.jpg" alt="3年生10">
+    <img src="../../Tohokubad/TaigaFuruyama.jpg" alt="3年生11">
+  </div>
+  <div class="year-text">3年生</div>
+</div>
+
+  <div class="year-card" data-grade="学部2年生">
+  <div class="year-photo">
+    <img src="../../Tohokubad/RikuUeda.jpg" class="active" alt="2年生1">
+    <img src="../../Tohokubad/ItsukiOku.jpg" alt="2年生2">
+    <img src="../../Tohokubad/RintaroSHikoda.jpg" alt="2年生3">
+    <img src="../../Tohokubad/SotaHanawa.jpg" alt="2年生4">
+    <img src="../../Tohokubad/MioHashiba.jpg" alt="2年生5">
+    <img src="../../Tohokubad/YukaFujita.jpg" alt="2年生6">
+    <img src="../../Tohokubad/TomokiMaehara.jpg" alt="2年生7">
+    <img src="../../Tohokubad/JieiMatsuoka.jpg" alt="2年生8">
+    <img src="../../Tohokubad/HarutoYamazaki.jpg" alt="2年生9">
+    <img src="../../Tohokubad/YuihaYamazaki.jpg" alt="2年生10">
+  </div>
+  <div class="year-text">2年生</div>
+</div>
+
+  <div class="year-card" data-grade="学部1年生">
+  <div class="year-photo">
+    <img src="../../Tohokubad/TakutoIshikawa.jpg" class="active" alt="1年生1">
+    <img src="../../Tohokubad/ReoIto.jpg" alt="1年生2">
+    <img src="../../Tohokubad/OsukeEndo.jpg" alt="1年生3">
+    <img src="../../Tohokubad/SomaYamauchi.jpg" alt="1年生4">
+    <img src="../../Tohokubad/ShunUsami.jpg" alt="1年生5">
+    <img src="../../Tohokubad/YukiKajiwara.jpg" alt="1年生6">
+    <img src="../../Tohokubad/YumaKaneko.jpg" alt="1年生7">
+    <img src="../../Tohokubad/ShunsukeKanno.jpg" alt="1年生8">
+    <img src="../../Tohokubad/MasayaKurakawa.jpg" alt="1年生9">
+    <img src="../../Tohokubad/YutaKobayashi.jpg" alt="1年生10">
+    <img src="../../Tohokubad/NobuhiroYajima.jpg" alt="1年生11">
+    <img src="../../Tohokubad/AobaSuzuki.jpg" alt="1年生12">
+    <img src="../../Tohokubad/SatomiSuzuki.jpg" alt="1年生13">
+    <img src="../../Tohokubad/ErikaMatsumoto.jpg" alt="1年生14">
+  </div>
+  <div class="year-text">1年生</div>
+</div>
+</section>
+<!-- ▲ 学年別セクションここまで ▲ -->
+     
+      <!-- ▼ 東北大学バドミントン部 1年生（前半） ▼ -->
+
+<article class="card"
+  data-name="石川 巧人"
+  data-yomi="イシカワ タクト"
+  data-grade="学部1年"
+  data-fac="経済学部"
+  data-home="山形県至道館高等学校"
+  data-birth="2006年11月4日"
+  data-fetish="Raj"
+  data-goal="部活辞めないこと"
+  data-msg="Uber eatsやってるので案件ください">
+  <div class="media"><img src="../../Tohokubad/TakutoIshikawa.jpg" alt="石川巧人の写真"><span class="tag">学部1年生</span></div>
+  <div class="p16">
+    <div class="name"><b>石川 巧人</b><span class="yomi">イシカワ タクト</span></div>
+    <div class="meta"><span class="pill">経済学部</span><span class="pill">山形県至道館高等学校</span></div>
+    <div class="footer"><small>#Raj #部活辞めないこと</small><button class="btn" data-open>プロフィール</button></div>
+  </div>
+</article>
+
+<article class="card"
+  data-name="伊藤 玲旺"
+  data-yomi="イトウ レオ"
+  data-grade="学部1年"
+  data-fac="工学部電気情報物理工学科"
+  data-home="埼玉県浦和西高校"
+  data-birth="2007年3月6日"
+  data-fetish="匂い"
+  data-goal="自己研鑽に励む"
+  data-msg="迷惑かけまくるぞ！">
+  <div class="media"><img src="../../Tohokubad/ReoIto.jpg" alt="伊藤玲旺の写真"><span class="tag">学部1年生</span></div>
+  <div class="p16">
+    <div class="name"><b>伊藤 玲旺</b><span class="yomi">イトウ レオ</span></div>
+    <div class="meta"><span class="pill">工学部電気情報物理工学科</span><span class="pill">埼玉県浦和西高校</span></div>
+    <div class="footer"><small>#匂い #自己研鑽に励む</small><button class="btn" data-open>プロフィール</button></div>
+  </div>
+</article>
+
+<article class="card"
+  data-name="遠藤 旺介"
+  data-yomi="エンドウ オウスケ"
+  data-grade="学部1年"
+  data-fac="工学部材料化学総合学科"
+  data-home="東京都桐朋高校"
+  data-birth="2006年7月21日"
+  data-fetish="手の甲"
+  data-goal="俺と僕を使い分けます"
+  data-msg="いつでも笑顔でいるように努力します">
+  <div class="media"><img src="../../Tohokubad/OsukeEndo.jpg" alt="遠藤旺介の写真" onerror="this.src='../Tohokubad/OsukeEndo.jpg'"><span class="tag">学部1年生</span></div>
+  <div class="p16">
+    <div class="name"><b>遠藤 旺介</b><span class="yomi">エンドウ オウスケ</span></div>
+    <div class="meta"><span class="pill">工学部材料化学総合学科</span><span class="pill">東京都桐朋高校</span></div>
+    <div class="footer"><small>#手の甲 #俺と僕を使い分けます</small><button class="btn" data-open>プロフィール</button></div>
+  </div>
+</article>
+
+<article class="card"
+  data-name="山内 蒼真"
+  data-yomi="ヤマウチ ソウマ"
+  data-grade="学部1年"
+  data-fac="工学部機械知能航空工学科"
+  data-home="青森県弘前高等学校"
+  data-birth="2006年8月26日"
+  data-fetish="ヘアピン"
+  data-goal="標準語をマスターする"
+  data-msg="なし">
+  <div class="media"><img src="../../Tohokubad/SomaYamauchi.jpg" alt="山内蒼真の写真"><span class="tag">学部1年生</span></div>
+  <div class="p16">
+    <div class="name"><b>山内 蒼真</b><span class="yomi">ヤマウチ ソウマ</span></div>
+    <div class="meta"><span class="pill">工学部機械知能航空工学科</span><span class="pill">青森県弘前高等学校</span></div>
+    <div class="footer"><small>#ヘアピン #標準語をマスターする</small><button class="btn" data-open>プロフィール</button></div>
+  </div>
+</article>
+
+<article class="card"
+  data-name="宇佐美 俊"
+  data-yomi="ウサミ シュン"
+  data-grade="学部1年"
+  data-fac="工学部電気情報物理工学科"
+  data-home="岩手県盛岡第一高校"
+  data-birth="2006年9月4日"
+  data-fetish="足"
+  data-goal="まともな筋肉をつける"
+  data-msg="一回は福田パン食べて下さい">
+  <div class="media"><img src="../../Tohokubad/ShunUsami.jpg" alt="宇佐美俊の写真"><span class="tag">学部1年生</span></div>
+  <div class="p16">
+    <div class="name"><b>宇佐美 俊</b><span class="yomi">ウサミ シュン</span></div>
+    <div class="meta"><span class="pill">工学部電気情報物理工学科</span><span class="pill">岩手県盛岡第一高校</span></div>
+    <div class="footer"><small>#足 #まともな筋肉をつける</small><button class="btn" data-open>プロフィール</button></div>
+  </div>
+</article>
+
+<article class="card"
+  data-name="梶原 悠希"
+  data-yomi="カジワラ ユウキ"
+  data-grade="学部1年"
+  data-fac="文学部"
+  data-home="栃木県宇都宮高校"
+  data-birth="2005年4月20日"
+  data-fetish="髪"
+  data-goal="国際センター前の坂を自転車で登り切る"
+  data-msg="学食高い">
+  <div class="media"><img src="../../Tohokubad/YukiKajiwara.jpg" alt="梶原悠希の写真"><span class="tag">学部1年生</span></div>
+  <div class="p16">
+    <div class="name"><b>梶原 悠希</b><span class="yomi">カジワラ ユウキ</span></div>
+    <div class="meta"><span class="pill">文学部</span><span class="pill">栃木県宇都宮高校</span></div>
+    <div class="footer"><small>#髪 #国際センター前の坂を登り切る</small><button class="btn" data-open>プロフィール</button></div>
+  </div>
+</article>
+
+<article class="card"
+  data-name="金子 悠茉"
+  data-yomi="カネコ ユマ"
+  data-grade="学部1年"
+  data-fac="工学部機械知能航空工学科"
+  data-home="神奈川県逗子開成高校"
+  data-birth="2006年12月15日"
+  data-fetish="彼女"
+  data-goal="久美の唐揚げ定食食べ切る"
+  data-msg="なんとかします">
+  <div class="media"><img src="../../Tohokubad/YumaKaneko.jpg" alt="金子悠茉の写真"><span class="tag">学部1年生</span></div>
+  <div class="p16">
+    <div class="name"><b>金子 悠茉</b><span class="yomi">カネコ ユマ</span></div>
+    <div class="meta"><span class="pill">工学部機械知能航空工学科</span><span class="pill">神奈川県逗子開成高校</span></div>
+    <div class="footer"><small>#彼女 #久美の唐揚げ定食食べ切る</small><button class="btn" data-open>プロフィール</button></div>
+  </div>
+</article>
+
+<article class="card"
+  data-name="菅野 竣介"
+  data-yomi="カンノ シュンスケ"
+  data-grade="学部1年"
+  data-fac="工学部化学・バイオ工学科"
+  data-home="宮城県仙台育英学園高等学校"
+  data-birth="2005年5月29日"
+  data-fetish="太もも"
+  data-goal="痩せること"
+  data-msg="一蓮托生連帯責任で行こうぜ！">
+  <div class="media"><img src="../../Tohokubad/ShunsukeKanno.jpg" alt="菅野竣介の写真"><span class="tag">学部1年生</span></div>
+  <div class="p16">
+    <div class="name"><b>菅野 竣介</b><span class="yomi">カンノ シュンスケ</span></div>
+    <div class="meta"><span class="pill">工学部化学・バイオ工学科</span><span class="pill">宮城県仙台育英学園高等学校</span></div>
+    <div class="footer"><small>#太もも #痩せること</small><button class="btn" data-open>プロフィール</button></div>
+  </div>
+</article>
+
+<article class="card"
+  data-name="倉川 雅也弥"
+  data-yomi="クラカワ マサヤ"
+  data-grade="学部1年"
+  data-fac="農学部"
+  data-home="千葉県千葉市立千葉高等学校"
+  data-birth="2007年2月4日"
+  data-fetish="声"
+  data-goal="声量上げる"
+  data-msg="電チャリ欲しい">
+  <div class="media"><img src="../../Tohokubad/MasayaKurakawa.jpg" alt="倉川雅也弥の写真"><span class="tag">学部1年生</span></div>
+  <div class="p16">
+    <div class="name"><b>倉川 雅也弥</b><span class="yomi">クラカワ マサヤ</span></div>
+    <div class="meta"><span class="pill">農学部</span><span class="pill">千葉県千葉市立千葉高等学校</span></div>
+    <div class="footer"><small>#声 #声量上げる</small><button class="btn" data-open>プロフィール</button></div>
+  </div>
+</article>
+
+<article class="card"
+  data-name="小林 雄太"
+  data-yomi="コバヤシ ユウタ"
+  data-grade="学部1年"
+  data-fac="工学部建築社会環境工学科"
+  data-home="愛知県旭丘高等学校"
+  data-birth="2007年1月26日"
+  data-fetish="声"
+  data-goal="身長10cm伸ばすこと"
+  data-msg="ボドのアドバイスいっぱいください！がんばります！">
+  <div class="media"><img src="../../Tohokubad/YutaKobayashi.jpg" alt="小林雄太の写真"><span class="tag">学部1年生</span></div>
+  <div class="p16">
+    <div class="name"><b>小林 雄太</b><span class="yomi">コバヤシ ユウタ</span></div>
+    <div class="meta"><span class="pill">工学部建築社会環境工学科</span><span class="pill">愛知県旭丘高等学校</span></div>
+    <div class="footer"><small>#声 #身長10cm伸ばす</small><button class="btn" data-open>プロフィール</button></div>
+  </div>
+</article>
+
+<article class="card"
+  data-name="矢嶋 信宏"
+  data-yomi="ヤジマ ノブヒロ"
+  data-grade="学部1年"
+  data-fac="理学部地球科学系"
+  data-home="栃木県宇都宮高校"
+  data-birth="2005年7月19日"
+  data-fetish="手"
+  data-goal="体幹を鍛える"
+  data-msg="よろしくお願いします！">
+  <div class="media"><img src="../../Tohokubad/NobuhiroYajima.jpg" alt="矢嶋信宏の写真"><span class="tag">学部1年生</span></div>
+  <div class="p16">
+    <div class="name"><b>矢嶋 信宏</b><span class="yomi">ヤジマ ノブヒロ</span></div>
+    <div class="meta"><span class="pill">理学部地球科学系</span><span class="pill">栃木県宇都宮高校</span></div>
+    <div class="footer"><small>#手 #体幹を鍛える</small><button class="btn" data-open>プロフィール</button></div>
+  </div>
+</article>
+
+<article class="card"
+  data-name="鈴木 青葉"
+  data-yomi="スズキ アオバ"
+  data-grade="学部1年"
+  data-fac="工学部建築社会環境工学科"
+  data-home="東京都桜修館中等教育学校"
+  data-birth="2006年6月8日"
+  data-fetish="髪"
+  data-goal="川内まで15分以内で行けるようにすること"
+  data-msg="なし">
+  <div class="media"><img src="../../Tohokubad/AobaSuzuki.jpg" alt="鈴木青葉の写真"><span class="tag">学部1年生</span></div>
+  <div class="p16">
+    <div class="name"><b>鈴木 青葉</b><span class="yomi">スズキ アオバ</span></div>
+    <div class="meta"><span class="pill">工学部建築社会環境工学科</span><span class="pill">東京都桜修館中等教育学校</span></div>
+    <div class="footer"><small>#髪 #川内まで15分以内</small><button class="btn" data-open>プロフィール</button></div>
+  </div>
+</article>
+
+<article class="card"
+  data-name="鈴木 里美"
+  data-yomi="スズキ サトミ"
+  data-grade="学部1年"
+  data-fac="工学部電気情報物理工学科"
+  data-home="宮城県仙台第二高等学校"
+  data-birth="2007年1月11日"
+  data-fetish="文字"
+  data-goal="足を早くする"
+  data-msg="よろしくお願いします！">
+  <div class="media"><img src="../../Tohokubad/SatomiSuzuki.jpg" alt="鈴木里美の写真"><span class="tag">学部1年生</span></div>
+  <div class="p16">
+    <div class="name"><b>鈴木 里美</b><span class="yomi">スズキ サトミ</span></div>
+    <div class="meta"><span class="pill">工学部電気情報物理工学科</span><span class="pill">宮城県仙台第二高等学校</span></div>
+    <div class="footer"><small>#文字 #足を早くする</small><button class="btn" data-open>プロフィール</button></div>
+  </div>
+</article>
+
+<article class="card"
+  data-name="松本 恵里花"
+  data-yomi="マツモト エリカ"
+  data-grade="学部1年"
+  data-fac="経済学部"
+  data-home="群馬県前橋女子高等学校"
+  data-birth="2006年5月14日"
+  data-fetish="声"
+  data-goal="TOEFLの点を上げる"
+  data-msg="アイカツのあいどるになります">
+  <div class="media"><img src="../../Tohokubad/ErikaMatsumoto.jpg" alt="松本恵里花の写真"><span class="tag">学部1年生</span></div>
+  <div class="p16">
+    <div class="name"><b>松本 恵里花</b><span class="yomi">マツモト エリカ</span></div>
+    <div class="meta"><span class="pill">経済学部</span><span class="pill">群馬県前橋女子高等学校</span></div>
+    <div class="footer"><small>#声 #TOEFLの点を上げる</small><button class="btn" data-open>プロフィール</button></div>
+  </div>
+</article>
+
+<!-- ▲ 東北大学バドミントン部 1年生（後半） ▲ -->
+
+<!-- ▼ 東北大学バドミントン部 2年生 ▼ -->
+
+<article class="card"
+  data-name="植田 凌空"
+  data-yomi="ウエダ リク"
+  data-grade="学部2年生"
+  data-fac="工学部機械知能航空学科"
+  data-home="北海道札幌東高校"
+  data-birth="2006年3月19日"
+  data-fetish="脚"
+  data-goal="身長170cm"
+  data-msg="一人暮らし最高！！">
+  <div class="media"><img src="../../Tohokubad/RikuUeda.jpg" alt="植田凌空の写真"><span class="tag">学部2年生</span></div>
+  <div class="p16">
+    <div class="name"><b>植田 凌空</b><span class="yomi">ウエダ リク</span></div>
+    <div class="meta"><span class="pill">工学部機械知能航空学科</span><span class="pill">北海道札幌東高校</span></div>
+    <div class="footer"><small>#脚 #身長170cm</small><button class="btn" data-open>プロフィール</button></div>
+  </div>
+</article>
+
+<article class="card"
+  data-name="奥 樹"
+  data-yomi="オク イツキ"
+  data-grade="学部2年生"
+  data-fac="理学部化学系"
+  data-home="神奈川県横浜翠嵐高校"
+  data-birth="2004年6月12日"
+  data-fetish="手"
+  data-goal="フットワーク強化"
+  data-msg="よろしくお願いします。">
+  <div class="media"><img src="../../Tohokubad/ItsukiOku.jpg" alt="奥樹の写真"><span class="tag">学部2年生</span></div>
+  <div class="p16">
+    <div class="name"><b>奥 樹</b><span class="yomi">オク イツキ</span></div>
+    <div class="meta"><span class="pill">理学部化学系</span><span class="pill">神奈川県横浜翠嵐高校</span></div>
+    <div class="footer"><small>#手 #フットワーク強化</small><button class="btn" data-open>プロフィール</button></div>
+  </div>
+</article>
+
+<article class="card"
+  data-name="志良 寛介（志子田 倫太朗）"
+  data-yomi="シラ カンスケ（シコダ リンタロウ）"
+  data-grade="学部2年生"
+  data-fac="文学部（工学部機械知能航空学科）"
+  data-home="アフリカ県コモロ諸島高校（宮城県仙台第三高校）"
+  data-birth="2005年1月7日"
+  data-fetish="えらフェチ"
+  data-goal="歴史に詳しくなります"
+  data-msg="魚なんですけど優しくしてください">
+  <div class="media"><img src="../../Tohokubad/RintaroSHikoda.jpg" alt="志良寛介（志子田倫太朗）の写真"><span class="tag">学部2年生</span></div>
+  <div class="p16">
+    <div class="name"><b>志良 寛介（志子田 倫太朗）</b><span class="yomi">シラ カンスケ（シコダ リンタロウ）</span></div>
+    <div class="meta"><span class="pill">文学部（工学部機械知能航空学科）</span><span class="pill">アフリカ県コモロ諸島高校（宮城県仙台第三高校）</span></div>
+    <div class="footer"><small>#えらフェチ #歴史に詳しくなります</small><button class="btn" data-open>プロフィール</button></div>
+  </div>
+</article>
+
+<article class="card"
+  data-name="塙 颯太"
+  data-yomi="ハナワ ソウタ"
+  data-grade="学部2年生"
+  data-fac="理学部化学系"
+  data-home="神奈川県立湘南高等学校"
+  data-birth="2004年11月2日"
+  data-fetish="髪質"
+  data-goal="七大戦レギュラー"
+  data-msg="ぽんこつ同期(某S君)を矯正しますよろしくお願いします">
+  <div class="media"><img src="../../Tohokubad/SotaHanawa.jpg" alt="塙颯太の写真"><span class="tag">学部2年生</span></div>
+  <div class="p16">
+    <div class="name"><b>塙 颯太</b><span class="yomi">ハナワ ソウタ</span></div>
+    <div class="meta"><span class="pill">理学部化学系</span><span class="pill">神奈川県立湘南高等学校</span></div>
+    <div class="footer"><small>#髪質 #七大戦レギュラー</small><button class="btn" data-open>プロフィール</button></div>
+  </div>
+</article>
+
+<article class="card"
+  data-name="橋場 美緒"
+  data-yomi="ハシバ ミオ"
+  data-grade="学部2年生"
+  data-fac="法学部"
+  data-home="青森県八戸高校"
+  data-birth="2005年7月12日"
+  data-fetish="匂い"
+  data-goal="単位落とさない！"
+  data-msg="やー！！ぱわー！！ﾊｯ!!">
+  <div class="media"><img src="../../Tohokubad/MioHashiba.jpg" alt="橋場美緒の写真"><span class="tag">学部2年生</span></div>
+  <div class="p16">
+    <div class="name"><b>橋場 美緒</b><span class="yomi">ハシバ ミオ</span></div>
+    <div class="meta"><span class="pill">法学部</span><span class="pill">青森県八戸高校</span></div>
+    <div class="footer"><small>#匂い #単位落とさない！</small><button class="btn" data-open>プロフィール</button></div>
+  </div>
+</article>
+
+<article class="card"
+  data-name="藤田 悠香"
+  data-yomi="フジタ ユウカ"
+  data-grade="学部2年生"
+  data-fac="文学部"
+  data-home="宮城県仙台第三高校"
+  data-birth="2006年2月1日"
+  data-fetish="髪"
+  data-goal="後ろのフットワークをはやくすること"
+  data-msg="よろしくお願いします！！">
+  <div class="media"><img src="../../Tohokubad/YukaFujita.jpg" alt="藤田悠香の写真"><span class="tag">学部2年生</span></div>
+  <div class="p16">
+    <div class="name"><b>藤田 悠香</b><span class="yomi">フジタ ユウカ</span></div>
+    <div class="meta"><span class="pill">文学部</span><span class="pill">宮城県仙台第三高校</span></div>
+    <div class="footer"><small>#髪 #後ろのフットワークをはやくすること</small><button class="btn" data-open>プロフィール</button></div>
+  </div>
+</article>
+
+<article class="card"
+  data-name="前原 知貴"
+  data-yomi="マエハラ トモキ"
+  data-grade="学部2年生"
+  data-fac="工学部材料科学総合学科"
+  data-home="千葉県県立千葉高校"
+  data-birth="2005年6月3日"
+  data-fetish="目"
+  data-goal="文武両道"
+  data-msg="ベストを尽くします！">
+  <div class="media"><img src="../../Tohokubad/TomokiMaehara.jpg" alt="前原知貴の写真"><span class="tag">学部2年生</span></div>
+  <div class="p16">
+    <div class="name"><b>前原 知貴</b><span class="yomi">マエハラ トモキ</span></div>
+    <div class="meta"><span class="pill">工学部材料科学総合学科</span><span class="pill">千葉県県立千葉高校</span></div>
+    <div class="footer"><small>#目 #文武両道</small><button class="btn" data-open>プロフィール</button></div>
+  </div>
+</article>
+
+<article class="card"
+  data-name="松岡 詩英"
+  data-yomi="マツオカ ジエイ"
+  data-grade="学部2年生"
+  data-fac="理学部物理系"
+  data-home="東京都開成高校"
+  data-birth="2004年9月16日"
+  data-fetish="ふくらはぎ"
+  data-goal="お金いっぱい稼ぎます"
+  data-msg="地下鉄高くね？">
+  <div class="media"><img src="../../Tohokubad/JieiMatsuoka.jpg" alt="松岡詩英の写真"><span class="tag">学部2年生</span></div>
+  <div class="p16">
+    <div class="name"><b>松岡 詩英</b><span class="yomi">マツオカ ジエイ</span></div>
+    <div class="meta"><span class="pill">理学部物理系</span><span class="pill">東京都開成高校</span></div>
+    <div class="footer"><small>#ふくらはぎ #お金いっぱい稼ぎます</small><button class="btn" data-open>プロフィール</button></div>
+  </div>
+</article>
+
+<article class="card"
+  data-name="山嵜 陽斗"
+  data-yomi="ヤマザキ ハルト"
+  data-grade="学部2年生"
+  data-fac="工学部機械知能航空工学科"
+  data-home="茨城県土浦日本大学高等学校"
+  data-birth="2005年12月17日"
+  data-fetish="髪"
+  data-goal="たくさん食べてたくさん寝ること"
+  data-msg="男を磨きます！！(厳しいって)">
+  <div class="media"><img src="../../Tohokubad/HarutoYamazaki.jpg" alt="山嵜陽斗の写真"><span class="tag">学部2年生</span></div>
+  <div class="p16">
+    <div class="name"><b>山嵜 陽斗</b><span class="yomi">ヤマザキ ハルト</span></div>
+    <div class="meta"><span class="pill">工学部機械知能航空工学科</span><span class="pill">茨城県土浦日本大学高等学校</span></div>
+    <div class="footer"><small>#髪 #たくさん食べてたくさん寝ること</small><button class="btn" data-open>プロフィール</button></div>
+  </div>
+</article>
+
+<article class="card"
+  data-name="山﨑 結葉"
+  data-yomi="ヤマザキ ユイハ"
+  data-grade="学部2年生"
+  data-fac="農学部"
+  data-home="宮城県仙台第一高校"
+  data-birth="2006年3月1日"
+  data-fetish="手"
+  data-goal="風邪をひかない"
+  data-msg="甘いものが好きです。がんばります。">
+  <div class="media"><img src="../../Tohokubad/YuihaYamazaki.jpg" alt="山﨑結葉の写真"><span class="tag">学部2年生</span></div>
+  <div class="p16">
+    <div class="name"><b>山﨑 結葉</b><span class="yomi">ヤマザキ ユイハ</span></div>
+    <div class="meta"><span class="pill">農学部</span><span class="pill">宮城県仙台第一高校</span></div>
+    <div class="footer"><small>#手 #風邪をひかない</small><button class="btn" data-open>プロフィール</button></div>
+  </div>
+</article>
+
+<!-- ▲ 東北大学バドミントン部 2年生以上（追加分） ▲ -->
+ <!-- ▼ 東北大学バドミントン部 3年生（追加分） ▼ -->
+
+<article class="card"
+  data-name="野溝 拓矢"
+  data-yomi="ノミゾ タクヤ"
+  data-grade="学部3年生"
+  data-fac="経済学部"
+  data-home="埼玉県春日部高校"
+  data-birth="2004年"
+  data-fetish="手"
+  data-goal="髪伸ばす"
+  data-msg="男子校">
+  <div class="media"><img src="../../Tohokubad/TakuyaNomizo.jpg" alt="野溝拓矢の写真"><span class="tag">学部3年生</span></div>
+  <div class="p16">
+    <div class="name"><b>野溝 拓矢</b><span class="yomi">ノミゾ タクヤ</span></div>
+    <div class="meta"><span class="pill">経済学部</span><span class="pill">埼玉県春日部高校</span></div>
+    <div class="footer"><small>#手 #髪伸ばす</small><button class="btn" data-open>プロフィール</button></div>
+  </div>
+</article>
+
+<article class="card"
+  data-name="山内 瞭也"
+  data-yomi="ヤマウチ リョウヤ"
+  data-grade="学部3年生"
+  data-fac="法学部"
+  data-home="青森県弘前高校"
+  data-birth="2004年6月28日"
+  data-fetish="麻雀"
+  data-goal="無事故無違反"
+  data-msg="聴牌即リー">
+  <div class="media"><img src="../../Tohokubad/RyoyaYamauchi.jpg" alt="山内瞭也の写真"><span class="tag">学部3年生</span></div>
+  <div class="p16">
+    <div class="name"><b>山内 瞭也</b><span class="yomi">ヤマウチ リョウヤ</span></div>
+    <div class="meta"><span class="pill">法学部</span><span class="pill">青森県弘前高校</span></div>
+    <div class="footer"><small>#麻雀 #無事故無違反</small><button class="btn" data-open>プロフィール</button></div>
+  </div>
+</article>
+
+<article class="card"
+  data-name="齋藤 拓実"
+  data-yomi="サイトウ タクミ"
+  data-grade="学部3年生"
+  data-fac="工学部材料科学総合学科"
+  data-home="山形県東桜学館高校"
+  data-birth="2003年6月17日"
+  data-fetish="脚"
+  data-goal="フットワーク頑張る"
+  data-msg="部活頑張る">
+  <div class="media"><img src="../../Tohokubad/TakumiSaito.jpg" alt="齋藤拓実の写真"><span class="tag">学部3年生</span></div>
+  <div class="p16">
+    <div class="name"><b>齋藤 拓実</b><span class="yomi">サイトウ タクミ</span></div>
+    <div class="meta"><span class="pill">工学部材料科学総合学科</span><span class="pill">山形県東桜学館高校</span></div>
+    <div class="footer"><small>#脚 #フットワーク頑張る</small><button class="btn" data-open>プロフィール</button></div>
+  </div>
+</article>
+
+<article class="card"
+  data-name="栗城 和花"
+  data-yomi="クリキ ノドカ"
+  data-grade="学部3年生"
+  data-fac="工学部建築社会環境工学科"
+  data-home="埼玉県浦和第一女子高校"
+  data-birth="2004年5月15日"
+  data-fetish="ふくらはぎ"
+  data-goal="体力つける"
+  data-msg="よろしくお願いします！">
+  <div class="media"><img src="../../Tohokubad/NodokaKuriki.jpg" alt="栗城和花の写真"><span class="tag">学部3年生</span></div>
+  <div class="p16">
+    <div class="name"><b>栗城 和花</b><span class="yomi">クリキ ノドカ</span></div>
+    <div class="meta"><span class="pill">工学部建築社会環境工学科</span><span class="pill">埼玉県浦和第一女子高校</span></div>
+    <div class="footer"><small>#ふくらはぎ #体力つける</small><button class="btn" data-open>プロフィール</button></div>
+  </div>
+</article>
+
+<article class="card"
+  data-name="佐々木 裕"
+  data-yomi="ササキ ヒロシ"
+  data-grade="学部3年生"
+  data-fac="文学部"
+  data-home="岩手県盛岡第一高校"
+  data-birth="2004年5月18日"
+  data-fetish="眼鏡"
+  data-goal="腹筋割る"
+  data-msg="頑張ります">
+  <div class="media"><img src="../../Tohokubad/HiroshiSasaki.jpg" alt="佐々木裕の写真"><span class="tag">学部3年生</span></div>
+  <div class="p16">
+    <div class="name"><b>佐々木 裕</b><span class="yomi">ササキ ヒロシ</span></div>
+    <div class="meta"><span class="pill">文学部</span><span class="pill">岩手県盛岡第一高校</span></div>
+    <div class="footer"><small>#眼鏡 #腹筋割る</small><button class="btn" data-open>プロフィール</button></div>
+  </div>
+</article>
+
+<article class="card"
+  data-name="松倉 みのり"
+  data-yomi="マツクラ ミノリ"
+  data-grade="学部3年生"
+  data-fac="農学部"
+  data-home="長野県松本深志高等学校"
+  data-birth="2003年7月23日"
+  data-fetish="顎ライン"
+  data-goal="絶対に課題溜めません"
+  data-msg="貯金します">
+  <div class="media"><img src="../../Tohokubad/MinoriMatsukura.jpg" alt="松倉みのりの写真"><span class="tag">学部3年生</span></div>
+  <div class="p16">
+    <div class="name"><b>松倉 みのり</b><span class="yomi">マツクラ ミノリ</span></div>
+    <div class="meta"><span class="pill">農学部</span><span class="pill">長野県松本深志高等学校</span></div>
+    <div class="footer"><small>#顎ライン #絶対に課題溜めません</small><button class="btn" data-open>プロフィール</button></div>
+  </div>
+</article>
+
+<article class="card"
+  data-name="飯場 大晟"
+  data-yomi="イイバ タイセイ"
+  data-grade="学部3年生"
+  data-fac="工学部機械知能航空工学科"
+  data-home="神奈川県横浜翠嵐高校"
+  data-birth="2004年"
+  data-fetish="髪"
+  data-goal="フィジカル強化！"
+  data-msg="一銭を笑うものは一銭に泣く">
+  <div class="media"><img src="../../Tohokubad/TaiseiIiba.jpg" alt="飯場大晟の写真"><span class="tag">学部3年生</span></div>
+  <div class="p16">
+    <div class="name"><b>飯場 大晟</b><span class="yomi">イイバ タイセイ</span></div>
+    <div class="meta"><span class="pill">工学部機械知能航空工学科</span><span class="pill">神奈川県横浜翠嵐高校</span></div>
+    <div class="footer"><small>#髪 #フィジカル強化！</small><button class="btn" data-open>プロフィール</button></div>
+  </div>
+</article>
+
+<article class="card"
+  data-name="藤澤 恒星"
+  data-yomi="フジサワ コウセイ"
+  data-grade="学部3年生"
+  data-fac="工学部建築社会環境工学科"
+  data-home="宮城県仙台二華高校"
+  data-birth="2005年3月26日"
+  data-fetish="目"
+  data-goal="フル単とる"
+  data-msg="シャイなのでいっぱい話しかけて下さい(´^ω^`;)">
+  <div class="media"><img src="../../Tohokubad/KoseiFujisawa.jpg" alt="藤澤恒星の写真"><span class="tag">学部3年生</span></div>
+  <div class="p16">
+    <div class="name"><b>藤澤 恒星</b><span class="yomi">フジサワ コウセイ</span></div>
+    <div class="meta"><span class="pill">工学部建築社会環境工学科</span><span class="pill">宮城県仙台二華高校</span></div>
+    <div class="footer"><small>#目 #フル単とる</small><button class="btn" data-open>プロフィール</button></div>
+  </div>
+</article>
+
+<article class="card"
+  data-name="横山 優作"
+  data-yomi="ヨコヤマ ユウサク"
+  data-grade="学部3年生"
+  data-fac="文学部"
+  data-home="宮城県泉館山高校"
+  data-birth="2004年10月2日"
+  data-fetish="ショートボブ"
+  data-goal="同期でトップ5入る"
+  data-msg="シャトルと友達になります。">
+  <div class="media"><img src="../../Tohokubad/YusakuYokoyama.jpg" alt="横山優作の写真"><span class="tag">学部3年生</span></div>
+  <div class="p16">
+    <div class="name"><b>横山 優作</b><span class="yomi">ヨコヤマ ユウサク</span></div>
+    <div class="meta"><span class="pill">文学部</span><span class="pill">宮城県泉館山高校</span></div>
+    <div class="footer"><small>#ショートボブ #同期でトップ5入る</small><button class="btn" data-open>プロフィール</button></div>
+  </div>
+</article>
+
+<article class="card"
+  data-name="櫻井 琉斗"
+  data-yomi="サクライ リュウト"
+  data-grade="学部3年生"
+  data-fac="工学部建築社会環境工学科"
+  data-home="新潟県新潟明訓高校"
+  data-birth="2004年11月21日"
+  data-fetish="匂い"
+  data-goal="太ももを競輪選手級にすること"
+  data-msg="お金ないです助けて下さい">
+  <div class="media"><img src="../../Tohokubad/RyutoSakurai.jpg" alt="櫻井琉斗の写真"><span class="tag">学部3年生</span></div>
+  <div class="p16">
+    <div class="name"><b>櫻井 琉斗</b><span class="yomi">サクライ リュウト</span></div>
+    <div class="meta"><span class="pill">工学部建築社会環境工学科</span><span class="pill">新潟県新潟明訓高校</span></div>
+    <div class="footer"><small>#匂い #太ももを競輪選手級にすること</small><button class="btn" data-open>プロフィール</button></div>
+  </div>
+</article>
+
+<article class="card"
+  data-name="古山 大雅"
+  data-yomi="フルヤマ タイガ"
+  data-grade="学部3年生"
+  data-fac="経済学部"
+  data-home="福島県福島高校"
+  data-birth="2005年3月16日"
+  data-fetish="目"
+  data-goal="バドミントン界の大谷翔平"
+  data-msg="ウェアをシンプルにします">
+  <div class="media"><img src="../../Tohokubad/TaigaFuruyama.jpg" alt="古山大雅の写真"><span class="tag">学部3年生</span></div>
+  <div class="p16">
+    <div class="name"><b>古山 大雅</b><span class="yomi">フルヤマ タイガ</span></div>
+    <div class="meta"><span class="pill">経済学部</span><span class="pill">福島県福島高校</span></div>
+    <div class="footer"><small>#目 #バドミントン界の大谷翔平</small><button class="btn" data-open>プロフィール</button></div>
+  </div>
+</article>
+
+<!-- ▲ 東北大学バドミントン部 3年生（追加分） ▲ -->
+    
+    </section>
+
+    <p class="empty" id="empty" hidden>条件に一致する部員が見つかりませんでした。</p>
+
+    <!-- ===== メインレイアウト ===== -->
+<div class="main-layout">
+
+  <!-- 左：学年カード -->
+  <section class="year-section">
+    <!-- ここに各 year-card (1〜4年生) を並べる -->
+  </section>
+
+  <!-- 右：サイドバー -->
+  <aside class="sidebar">
+    <section class="sidebar-section">
+      <h3>部員紹介</h3>
+      <ul>
+        <li><a href="#member-list">部員一覧</a></li>
+        <li><a href="#staff">首脳陣・チームスタッフ</a></li>
+      </ul>
+    </section>
+
+    <section class="sidebar-section">
+      <h3>学年別</h3>
+      <ul>
+        <li><a href="#" data-grade="学部4年生">4年生</a></li>
+        <li><a href="#" data-grade="学部3年生">3年生</a></li>
+        <li><a href="#" data-grade="学部2年生">2年生</a></li>
+        <li><a href="#" data-grade="学部1年生">1年生</a></li>
+      </ul>
+    </section>
+  </aside>
+
+  <!-- ▼ プロフィールモーダル（目標・一言 対応） ▼ -->
+<dialog id="dlg" aria-labelledby="dlg-title">
+  <div class="dlg-head">
+    <strong id="dlg-title">プロフィール</strong>
+    <button class="btn" id="dlg-close">閉じる</button>
+  </div>
+  <div class="dlg-body">
+    <div class="dlg-media"><img id="dlg-img" alt="プロフィール画像" /></div>
+    <div class="dlg-content">
+      <div class="kv"><div class="k">氏名</div><div class="v" id="dlg-name"></div></div>
+      <div class="kv"><div class="k">よみ</div><div class="v" id="dlg-yomi"></div></div>
+      <div class="kv"><div class="k">学年</div><div class="v" id="dlg-gy"></div></div>
+      <div class="kv"><div class="k">学部</div><div class="v" id="dlg-fac"></div></div>
+      <div class="kv"><div class="k">出身校</div><div class="v" id="dlg-home"></div></div>
+      <div class="kv"><div class="k">誕生日</div><div class="v" id="dlg-birth"></div></div>
+      <div class="kv"><div class="k">フェチ</div><div class="v" id="dlg-fetish"></div></div>
+      <div class="kv"><div class="k">目標</div><div class="v" id="dlg-goal"></div></div>
+      <div class="kv"><div class="k">一言</div><div class="v" id="dlg-msg"></div></div>
+    </div>
+  </div>
+</dialog>
+
+</main>
+<!-- ▲ プロフィールモーダル ▲ -->
+
+<script>
+// =============================
+// 1️⃣ テキスト正規化ユーティリティ
+// =============================
+const normalizeText = (s) =>
+  (s ?? '')
+    .toString()
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, ''); // 空白・全角半角の揺れ吸収
+
+const z2hNum = (s) =>
+  (s ?? '').replace(/[０-９]/g, (d) => String.fromCharCode(d.charCodeAt(0) - 0xFEE0));
+
+const toGradeCode = (raw) => {
+  let s = normalizeText(z2hNum(raw));
+  s = s
+    .replace(/学部/g, 'b')
+    .replace(/修士/g, 'm')
+    .replace(/博士/g, 'd')
+    .replace(/年生?/g, '')
+    .replace(/年度/g, '')
+    .replace(/年/g, '');
+  const onlyNum = s.match(/^([1-9])$/);
+  if (onlyNum) return `b${onlyNum[1]}`;
+  const m = s.match(/^([bmd])([1-9])$/);
+  if (m) return `${m[1]}${m[2]}`;
+  return '';
+};
+
+// =============================
+// 2️⃣ 基本セットアップ
+// =============================
+const $  = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
+
+const grid       = $('#grid');
+const empty      = $('#empty');
+const yearSection = $('.year-section');
+const sidebar    = $('.sidebar');
+const state      = { q:'', grade:'', home:'', fac:'' };
+
+// =============================
+// 3️⃣ チップの見た目制御
+// =============================
+const setActiveChip = (wrapId, value) => {
+  const box = document.getElementById(wrapId);
+  $$('.chip', box).forEach(ch => ch.classList.toggle('is-active', ch.dataset.value === value));
+};
+
+// =============================
+// 4️⃣ イベント設定
+// =============================
+
+// 検索欄
+$('#q').addEventListener('input', e => {
+  state.q = e.target.value.trim();
+  apply(true);
+});
+
+// 学年セレクト
+$('#grade').addEventListener('change', e => {
+  state.grade = e.target.value.trim();
+  apply(true);
+});
+
+// 学部チップ
+$('#chips-fac').addEventListener('click', e => {
+  if (e.target.matches('.chip')) {
+    state.fac = e.target.dataset.value;
+    setActiveChip('chips-fac', state.fac);
+    apply(true);
+  }
+});
+
+// 出身地チップ
+$('#chips-home').addEventListener('click', e => {
+  if (e.target.matches('.chip')) {
+    state.home = e.target.dataset.value;
+    setActiveChip('chips-home', state.home);
+    apply(true);
+  }
+});
+
+// =============================
+// 5️⃣ 検索・フィルタのメイン処理
+// =============================
+function apply(fromSearch = false) {
+  grid.setAttribute('aria-busy', 'true');
+  let matchCount = 0;
+
+  $$('.card', grid).forEach(card => {
+    const text = normalizeText(`${card.dataset.name} ${card.dataset.yomi} ${card.dataset.fac} ${card.dataset.home}`);
+    const q    = normalizeText(state.q);
+
+    const okQ = !q || text.includes(q);
+    const okG = !state.grade || toGradeCode(card.dataset.grade) === toGradeCode(state.grade);
+    const okH = !state.home  || card.dataset.home.includes(state.home);
+    const okF = !state.fac   || card.dataset.fac.includes(state.fac);
+
+    const show = okQ && okG && okH && okF;
+    card.hidden = !show;
+    if (show) matchCount++;
+  });
+
+  empty.hidden = matchCount !== 0;
+  grid.removeAttribute('aria-busy');
+
+  // ✅ 検索・フィルタが発動したときは year-section と sidebar を隠す
+  if (fromSearch) {
+    if (yearSection) yearSection.style.display = 'none';
+    if (sidebar) sidebar.style.display = 'none';
+  }
+}
+
+// =============================
+// 6️⃣ プロフィールモーダル
+// =============================
+const dlg = $('#dlg');
+const closeBtn = $('#dlg-close');
+
+grid.addEventListener('click', e => {
+  const btn = e.target.closest('[data-open]');
+  if (!btn) return;
+  const card = e.target.closest('.card');
+
+  $('#dlg-title').textContent = `${card.dataset.name} — プロフィール`;
+  $('#dlg-name').textContent  = card.dataset.name;
+  $('#dlg-yomi').textContent  = card.dataset.yomi;
+  $('#dlg-gy').textContent    = card.dataset.grade;
+  $('#dlg-fac').textContent   = card.dataset.fac;
+  $('#dlg-home').textContent  = card.dataset.home;
+  $('#dlg-img').src           = card.querySelector('img').src;
+
+  $('#dlg-birth').textContent  = card.dataset.birth  || "—";
+  $('#dlg-fetish').textContent = card.dataset.fetish || "—";
+  $('#dlg-goal').textContent   = card.dataset.goal   || "—";
+  $('#dlg-msg').textContent    = card.dataset.msg    || "—";
+
+  dlg.showModal();
+});
+
+closeBtn.addEventListener('click', () => dlg.close());
+
+// =============================
+// 7️⃣ year-cardクリックで学年検索
+// =============================
+$$('.year-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const grade = card.dataset.grade;
+    state.grade = grade;
+    apply(true);
+    window.scrollTo({ top: grid.offsetTop - 50, behavior: 'smooth' });
+  });
+});
+
+// =============================
+// 8️⃣ サイドバークリックで学年検索
+// =============================
+$$('.sidebar a[data-grade]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const grade = link.dataset.grade;
+    state.grade = grade;
+    apply(true);
+    window.scrollTo({ top: grid.offsetTop - 50, behavior: 'smooth' });
+  });
+});
+
+// =============================
+// 9️⃣ 背景クリックで year-section / sidebar 再表示
+// =============================
+document.addEventListener('click', (e) => {
+  const clickedInsideCard    = e.target.closest('.card');
+  const clickedInsideYear    = e.target.closest('.year-card');
+  const clickedInsideHeader  = e.target.closest('header');
+  const clickedInsideSidebar = e.target.closest('.sidebar');
+  const clickedCloseBtn      = e.target.closest('#dlg-close');
+
+  if (clickedCloseBtn || e.target.closest('#dlg')) return;
+
+  // 背景クリックとみなす
+  if (!clickedInsideCard && !clickedInsideYear && !clickedInsideHeader && !clickedInsideSidebar) {
+    // 初期状態に戻す
+    $$('.card').forEach(card => card.hidden = true);
+    if (yearSection) yearSection.style.display = '';
+    if (sidebar) sidebar.style.display = '';
+    state.q = state.grade = state.fac = state.home = '';
+  }
+});
+
+// =============================
+// 🔟 初期状態：全カード非表示
+// =============================
+$$('.card', grid).forEach(c => c.hidden = true);
+</script>
+
+</body>
+</html>
