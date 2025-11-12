@@ -78,10 +78,18 @@ a{color:inherit; text-decoration:none}
 .hero {
   position: relative;
   width: 100%;
-  height: 450px;
+  height: 450px; /* 高さを中の要素に合わせる */
   overflow: hidden;
   color: var(--text);
   border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+@media (max-width: 740px) {
+  .hero {
+    min-height: auto;
+    height: auto;
+    clip-path: none; /* ← 小画面でははみ出し処理なしでもOK */
+  }
 }
 
 .hero::before {
@@ -89,42 +97,17 @@ a{color:inherit; text-decoration:none}
   position: absolute;
   inset: -10px;
   background: url("../Tohokubad/IMG_9907.JPG") center/cover no-repeat;
-  filter: blur(4px);
-  transform: scale(1.05);
-  z-index: 0;
+  filter: blur(4px);        /* ← ここでぼかしの強さを調整（4〜8pxが自然） */
+  transform: scale(1.05);   /* ← ぼかすと端が透けるので少し拡大 */
+  z-index: 0;               /* ← 一番下に配置 */
 }
 
-.hero .overlay {
+ .hero .overlay {
   position: absolute;
   inset: 0;
   background: rgba(0,0,0,0.45);
   z-index: 1;
-}
-
-.hero .brand {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 80px 20px;
-  text-align: center;
-}
-
-.hero .main-title {
-  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
-  font-size: calc(22px + 1vw);
-  color: var(--text);
-  text-shadow: 0 3px 12px rgba(0,0,0,0.5);
-  line-height: 1.4;
-}
-
-.hero .main-title span {
-  display: block;
-  font-size: 0.8em;
-  color: var(--accent-light);
-  margin-top: 6px;
-}
+} 
 
 
   /* .hero h1 {
