@@ -236,6 +236,13 @@ body {
   letter-spacing: 0.03em;
 }
 
+/* === レーダーチャート中央寄せ === */
+.right-sidebar canvas {
+  display: block;        /* inline要素をブロック化 */
+  margin: 0 auto;        /* 左右の余白を自動調整で中央寄せ */
+  max-width: 250px;      /* （任意）サイズを少し制限して整える */
+}
+
 /* === SNSリンク（他大学と統一デザイン） === */
 .sns-list {
   list-style: none;
