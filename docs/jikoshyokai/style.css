@@ -374,9 +374,10 @@ dialog::backdrop{background:rgba(0,0,0,.55)}
 
 /* === 学年別リンクセクション === */
 .year-section {
-  max-width: 900px;
-  margin: 60px auto 40px;
-  padding: 0 20px;
+  display: flex;            /* ← 横並びにする */
+  flex-wrap: wrap;          /* ← 画面幅が狭い時は自動で折り返す */
+  gap: 20px;                /* ← カード同士の間隔を設定 */
+  justify-content: center;  /* ← 中央揃え（左寄せにしたい場合はflex-start） */
 }
 
 .year-card {
