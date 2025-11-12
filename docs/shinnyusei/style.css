@@ -174,3 +174,16 @@ footer {
   padding: 30px 0;
   border-top: 1px solid rgba(0,0,0,0.1);
 }
+
+/* === スマホ対応：ナビバー全体を少し小さく === */
+@media (max-width: 740px) {
+  .navbar ul {
+    gap: 18px;             /* 間隔を少し狭く */
+    padding: 10px 14px;    /* 高さを抑える（全体で約0.7倍） */
+  }
+
+  .navbar a {
+    font-size: 12px;       /* 文字サイズを16px → 約12pxに縮小（7割） */
+    letter-spacing: 0.04em;
+  }
+}
